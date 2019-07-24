@@ -13,19 +13,19 @@ import com.multicampus.biz.board.BoardVO;
 
 public class InsertBoardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private String boardEncoding;
+//	private String boardEncoding;
 
 //	public void init(ServletConfig config) throws ServletException {
 //		boardEncoding = config.getInitParameter("encoding");
 //	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 0. 글로벌 파라미터 정보 추출		
-		ServletContext context = getServletContext();
-		boardEncoding = context.getInitParameter("encoding");
-		
-		// 1. 사용자 입력정보(title, writer, content) 추출
-		request.setCharacterEncoding(boardEncoding);
+//		// 0. 글로벌 파라미터 정보 추출		
+//		ServletContext context = getServletContext();
+//		boardEncoding = context.getInitParameter("encoding");
+//		
+//		// 1. 사용자 입력정보(title, writer, content) 추출
+//		request.setCharacterEncoding(boardEncoding);
 		String title = request.getParameter("title");
 		String writer = request.getParameter("writer");
 		String content = request.getParameter("content");

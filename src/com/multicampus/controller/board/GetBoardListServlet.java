@@ -15,12 +15,22 @@ import com.multicampus.biz.board.BoardVO;
 public class GetBoardListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("===> GetBoardListServlet 실행");		
-		// 1. 사용자 입력정보 추출(검색 기능은 나중에...)
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
+		// 1. 사용자 입력정보 추출
+		String searchCondition = request.getParameter("searchCondition");
+		String searchKeyword = request.getParameter("searchKeyword");
+		
+		// Null Check
+		if(searchCondition == null) searchCondition = "TITLE";
+		if(searchKeyword == null) searchKeyword = "";
+		
 		// 2. DB 연동 처리
+		BoardVO vo = new BoardVO();
+		vo.setSearchCondition(searchCondition);
+		vo.setSearchKeyword(searchKeyword);
+		
 		BoardDAO boardDAO = new BoardDAO();
-		List<BoardVO> boardList = boardDAO.getBoardList();
+		List<BoardVO> boardList = boardDAO.getBoardList(vo);
 		
 		// 3. 응답 화면 구성
 		response.setContentType("text/html; charset=EUC-KR");
