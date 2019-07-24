@@ -8,30 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class HelloServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;	
 	
-    public HelloServlet() {
-        System.out.println("===> HelloServlet 积己");
-    }
-    
-    public void init() throws ServletException {
-    	System.out.println("---> init() 角青");
-    }
-    
-//    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//    	System.out.println("---> service() 角青");
-//    }
-    
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, 
+    		             HttpServletResponse response) throws ServletException, IOException {
     	System.out.println("---> doGet() 角青");
-    }
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	System.out.println("---> doPost() 角青");
-    }
-    
-    public void destroy() {
-    	System.out.println("---> destroy() 角青");
+    	System.out.println(request.getMethod());
+    	System.out.println(request.getRequestURI());
+    	System.out.println(request.getProtocol());
+    	System.out.println(request.getHeader("User-Agent"));
+    	System.out.println(request.getParameter("id"));
     }
 
 }
