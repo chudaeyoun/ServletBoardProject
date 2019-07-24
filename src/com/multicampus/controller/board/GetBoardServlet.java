@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.multicampus.biz.board.BoardDAO;
 import com.multicampus.biz.board.BoardVO;
@@ -72,7 +73,12 @@ public class GetBoardServlet extends HttpServlet {
 		out.println("</form>");
 		out.println("<hr>");
 		out.println("<a href='insertBoard.html'>글등록</a>&nbsp;&nbsp;&nbsp;");
-		out.println("<a href='deleteBoard.do?seq=" + board.getSeq() + "'>글삭제</a>&nbsp;&nbsp;&nbsp;");
+		
+		HttpSession session = request.getSession();
+		if(session.getAttribute("userRole").equals("Admin")) {
+			out.println("<a href='deleteBoard.do?seq=" + board.getSeq() + "'>글삭제</a>&nbsp;&nbsp;&nbsp;");				
+		}
+		
 		out.println("<a href='getBoardList.do'>글목록</a>");
 		out.println("</center>");
 		out.println("</body>");
